@@ -1,4 +1,33 @@
-const Quiz = require('../models/quizModel');
+const Quiz = require('../models/Quiz');
+
+exports.createQuiz = async (req, res) => {
+  try {
+    const { title, lessonId, questions } = req.body;
+
+    const newQuiz = new Quiz({
+      title,
+      lesson: lessonId,
+      questions,
+    });
+
+    await newQuiz.save();
+    res.status(201).json(newQuiz);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get all quizzes for a course
+exports.getQuizzesByCourse = async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const quizzes = await Quiz.find({ course: courseId });
+
+    res.json(quizzes);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Get quiz questions for a lesson
 exports.getQuizByLesson = async (req, res) => {
