@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const communitySchema = new mongoose.Schema({
-  course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
+  course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course'},
   title: { type: String, required: true },
   description: String,
   posts: [{
