@@ -19,3 +19,5 @@ package-lock.json
 # Build directories (if you ever add a bundler like Vite, Webpack, etc.)
 dist/
 build/
+
+seedData.js
